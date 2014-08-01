@@ -94,6 +94,12 @@
       <version>${gwt.version}</version>
       <scope>provided</scope>
     </dependency>
+    
+    <dependency>
+        <groupId>com.wallissoftware</groupId>
+      <artifactId>gwt-unzip</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
 
   </dependencies>
 

@@ -5,10 +5,11 @@ import java.util.Set;
 
 import com.google.gwt.core.client.JavaScriptException;
 import com.google.gwt.storage.client.Storage;
+import com.wallissoftware.zip.client.Inflate;
 
 public class PriorityStorage {
 
-    private final static String PREFIX = "q2WNer";
+    private final static String PREFIX = "p";
 
     private final Storage storage;
 
@@ -55,7 +56,7 @@ public class PriorityStorage {
     }
 
     public String getItem(final String key) {
-        return stripPriority(storage.getItem(key));
+        return stripPriority(Inflate.inflate(storage.getItem(key)));
     }
 
     public int getLength() {
@@ -81,7 +82,7 @@ public class PriorityStorage {
 
     public void setItem(final String key, final String data, final int priority) {
         try {
-            storage.setItem(key, addPriority(data, priority));
+            storage.setItem(key, Inflate.deflate(addPriority(data, priority)));
         } catch (final JavaScriptException e) {
             final String msg = e.getMessage();
             if (msg != null && msg.contains("QUOTA") && msg.contains("DOM")) {
