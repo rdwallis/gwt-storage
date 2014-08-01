@@ -56,7 +56,11 @@ public class PriorityStorage {
     }
 
     public String getItem(final String key) {
-        return stripPriority(Inflate.inflate(storage.getItem(key)));
+        final String storageItem = storage.getItem(key);
+        if (storageItem == null) {
+            return null;
+        }
+        return stripPriority(Inflate.inflate(storageItem));
     }
 
     public int getLength() {
